@@ -1,8 +1,8 @@
 <template>
-  <div id="show-blogs">
+  <div v-theme:column="'wide'" id="show-blogs">    <!--可传递参数如column;wide传递字符串需要用引号-->
       <h1>文章列表</h1>
       <div v-for="blog in blogs" class="single-blog">
-          <h2>{{blog.title}}</h2>
+          <h2 v-rainbow>{{blog.title}}</h2>
           <article>{{blog.body}}</article>
       </div>
   </div>
