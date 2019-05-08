@@ -85,9 +85,13 @@ export default {
   box-sizing: border-box;
 }
 #add-blog{
-  margin: 20px auto;
+  /* margin: 20px auto;
   max-width:600px;
-  padding: 20px;
+  padding: 20px; */
+  min-width: 800px;
+  max-width: 1200px;
+  padding: 0 20px;
+  margin: 0 auto;
 }
 label{
   display: block;

@@ -3,7 +3,9 @@
       <h1>文章列表</h1>
       <input type="text" v-model="search" placeholder="搜索">
       <div v-for="blog in filteredBlogs" class="single-blog">
+          <router-link v-bind:to="'/blog/' + blog.id">
           <h2 v-rainbow>{{blog.title | to-uppercase}}</h2>
+          </router-link>
           <article>{{blog.body | snippet}}</article>
       </div>
   </div>
@@ -59,12 +61,27 @@ export default {
 <style>
 #show-blogs{
     min-width: 800px;
+    max-width: 1200px;
+    padding: 0 20px;
     margin: 0 auto;
 }
 .single-blog{
     padding: 20px;
     margin: 20px 0;
     box-sizing: border-box;
-    background: rgb(243, 243, 243);
+    background: rgb(249, 249, 249);
+    border: 1px dotted #aaa;
 }
+
+#show-blogs a{
+    color: #444;
+    text-decoration: none;
+}
+
+input[type="text"]{
+    padding: 8px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
 </style>
