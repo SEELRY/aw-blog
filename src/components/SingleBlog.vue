@@ -2,7 +2,12 @@
     <div id="single-blog">
         <div class="content">
         <h1>{{blog.title}}</h1>
-        <article>{{blog.body}}</article>
+        <article>{{blog.content}}</article>
+        <p>作者：{{blog.author}}</p>
+        <p>分类：</p>
+        <ul>
+            <li v-for="category in blog.categories">{{category}}</li>
+        </ul>
         </div>
     </div>
 </template>
@@ -17,10 +22,14 @@ export default {
         }
     },
     created(){
-        this.$http.get('https://jsonplaceholder.typicode.com/posts/' + this.id)
+        this.$http.get('https://vuedemo-b1233.firebaseio.com/posts.json' + this.id + ".json")
         .then(function(data){
             // console.log(data);
-            this.blog = data.body;
+            // this.blog = data.body;
+            return  data.json();
+        })
+        .then(function(data){
+            this.blog = data;
         });
     }
 }

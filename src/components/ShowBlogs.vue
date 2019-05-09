@@ -6,7 +6,7 @@
           <router-link v-bind:to="'/blog/' + blog.id">
           <h2 v-rainbow>{{blog.title | to-uppercase}}</h2>
           </router-link>
-          <article>{{blog.body | snippet}}</article>
+          <article>{{blog.content | snippet}}</article>
       </div>
   </div>
 </template>
@@ -22,11 +22,23 @@ export default {
       }
   },
   created(){
-      this.$http.get('../../static/posts.json')
+      this.$http.get('https://vuedemo-b1233.firebaseio.com/posts.json')
       .then(function(data){
-        //   console.log(data);
-        this.blogs = data.body.slice(0,10);
-        console.log(this.blogs);
+          return data.json();
+        // this.blogs = data.body.slice(0,10);
+        // console.log(this.blogs);
+      })
+      .then(function(data){
+          var blogsArray = [];
+          for(let key in data){
+            //   console.log(key);
+            //   console.log(data[key]);
+            data[key].id = key;
+            blogsArray.push(data[key]);
+            // console.log(blogsArray);
+          }
+          this.blogs = blogsArray;
+          console.log(this.blogs);
       })
   },
   computed:{
